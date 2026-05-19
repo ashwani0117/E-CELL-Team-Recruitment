@@ -26,7 +26,7 @@ export default function WhyStep({ onNext, onBack }: WhyStepProps) {
       <div className="relative z-10 border-b border-white/5 bg-[#0f0f0f]/80 px-6 py-3 flex items-center gap-4">
         <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
         <span className="font-mono text-[10px] text-primary uppercase tracking-[0.3em]">Mission Briefing — Document 02</span>
-        <div className="ml-auto font-mono text-[10px] text-white/20 uppercase tracking-widest">IIST Indore / E-Cell</div>
+        <div className="ml-auto font-mono text-[10px] text-white/20 uppercase tracking-widest">E-Cell IIST</div>
       </div>
 
       <div className="relative z-10 flex-1 overflow-y-auto px-6 py-6 md:px-10">

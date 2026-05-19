@@ -18,10 +18,10 @@ export default function Navbar({ step, totalSteps, stepTitle, goToStep }: Navbar
     >
       <div className="mx-auto px-4 md:px-8 h-[72px] flex items-center justify-between">
         <button onClick={() => goToStep(0)} className="flex items-center gap-3" data-testid="nav-logo">
-          <img src={ecellLogo} alt="E-Cell IIST Indore" className="h-10 w-10 object-contain" />
-          <div className="hidden sm:block">
+          <img src={ecellLogo} alt="E-Cell IIST" className="h-10 w-10 object-contain" />
+          <div>
             <div className="font-display text-lg text-white uppercase tracking-widest leading-none">E-Cell</div>
-            <div className="text-[10px] font-mono text-white/40 tracking-[0.2em] uppercase">IIST Indore</div>
+            <div className="text-[10px] font-mono text-white/40 tracking-[0.2em] uppercase">IIST</div>
           </div>
         </button>
 

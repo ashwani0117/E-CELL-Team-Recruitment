@@ -61,7 +61,7 @@ export default function HeroStep({ onNext }: HeroStepProps) {
         className="relative z-10 flex flex-col items-center text-center px-6 max-w-3xl"
       >
         <motion.div variants={itemVariants} className="mb-8">
-          <img src={ecellLogo} alt="E-Cell IIST Indore" className="w-20 h-20 object-contain mx-auto" />
+          <img src={ecellLogo} alt="E-Cell IIST" className="w-20 h-20 object-contain mx-auto" />
         </motion.div>
 
         <motion.div variants={itemVariants} className="mb-4">
@@ -81,7 +81,7 @@ export default function HeroStep({ onNext }: HeroStepProps) {
         </motion.h1>
 
         <motion.p variants={itemVariants} className="text-white/50 text-sm md:text-base uppercase tracking-[0.2em] mb-3">
-          E-Cell IIST Indore officially opens
+          E-Cell IIST officially opens
         </motion.p>
 
         <motion.p variants={itemVariants} className="text-white/30 text-xs md:text-sm italic mb-12 max-w-sm">
