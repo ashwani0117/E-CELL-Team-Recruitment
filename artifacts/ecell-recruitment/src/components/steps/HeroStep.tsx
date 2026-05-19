@@ -1,26 +1,7 @@
 import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
 import ecellLogo from "@assets/image_1779218120017.png";
-
-interface HeroStepProps {
-  onNext: () => void;
-}
-
-function DaliMask({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 200 240" className={className} fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="100" cy="110" rx="72" ry="88" />
-      <ellipse cx="100" cy="108" rx="58" ry="74" fill="#0b0b0b" />
-      <ellipse cx="74" cy="88" rx="14" ry="10" />
-      <ellipse cx="126" cy="88" rx="14" ry="10" />
-      <ellipse cx="74" cy="88" rx="8" ry="6" fill="#0b0b0b" />
-      <ellipse cx="126" cy="88" rx="8" ry="6" fill="#0b0b0b" />
-      <path d="M78 130 Q100 145 122 130" stroke="currentColor" strokeWidth="3" fill="none" strokeLinecap="round" />
-      <rect x="85" y="195" width="30" height="6" rx="3" />
-      <rect x="91" y="201" width="18" height="20" rx="2" />
-    </svg>
-  );
-}
+import daliMask from "@assets/image_1779219329578.png";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -38,14 +19,34 @@ export default function HeroStep({ onNext }: HeroStepProps) {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(179,18,23,0.18)_0%,rgba(11,11,11,1)_65%)]" />
       <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(11,11,11,0.2)_0%,rgba(11,11,11,0.95)_100%)]" />
 
-      {/* Large Dali mask in background — left */}
-      <div className="absolute left-[-80px] top-1/2 -translate-y-1/2 opacity-[0.04] pointer-events-none select-none">
-        <DaliMask className="w-[340px] h-[340px] text-white" />
-      </div>
-      {/* Large Dali mask in background — right */}
-      <div className="absolute right-[-80px] top-1/2 -translate-y-1/2 opacity-[0.04] pointer-events-none select-none">
-        <DaliMask className="w-[340px] h-[340px] text-white" />
-      </div>
+      {/* Dali mask — left */}
+      <motion.div
+        className="absolute left-0 top-1/2 -translate-y-1/2 pointer-events-none select-none"
+        initial={{ opacity: 0, x: -40 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
+      >
+        <img
+          src={daliMask}
+          alt=""
+          className="w-[260px] md:w-[340px] lg:w-[400px] object-contain"
+          style={{ opacity: 0.18, filter: "grayscale(30%) brightness(0.7)" }}
+        />
+      </motion.div>
+      {/* Dali mask — right (mirrored) */}
+      <motion.div
+        className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none select-none"
+        initial={{ opacity: 0, x: 40 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
+      >
+        <img
+          src={daliMask}
+          alt=""
+          className="w-[260px] md:w-[340px] lg:w-[400px] object-contain"
+          style={{ opacity: 0.18, filter: "grayscale(30%) brightness(0.7) scaleX(-1)", transform: "scaleX(-1)" }}
+        />
+      </motion.div>
 
       {/* Horizontal red scan line */}
       <motion.div
