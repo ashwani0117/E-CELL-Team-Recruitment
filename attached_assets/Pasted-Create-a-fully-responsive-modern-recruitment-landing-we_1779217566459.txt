@@ -1,0 +1,373 @@
+Create a fully responsive modern recruitment landing website for “E-Cell IIST Indore — Team Recruitment 2026–27”.
+
+IMPORTANT:
+This should NOT feel like a normal college club website.
+It should feel like a cinematic recruitment experience inspired by the atmosphere, typography, transitions, tension, and aesthetics of Money Heist — but still remain professional, premium, modern, and realistic for an official college entrepreneurship cell.
+
+Do NOT make it look childish, meme-based, or over-themed.
+Use the Money Heist vibe subtly through:
+- cinematic transitions
+- red/black color palette
+- bold typography
+- mission-based UX
+- vault/heist atmosphere
+- smooth animations
+- immersive storytelling
+
+IMPORTANT:
+I will attach:
+1. Official E-Cell logo
+2. Recruitment posters
+3. Design references
+
+Use ONLY the exact uploaded logo.
+Do NOT recreate or redesign the logo.
+Use the uploaded posters and visuals as inspiration for:
+- colors
+- layout style
+- visual identity
+- typography feel
+- spacing
+- cinematic tone
+
+==================================================
+🚨 WEBSITE CORE IDEA
+==================================================
+
+Instead of directly giving students a Google Form,
+the website should create curiosity and excitement.
+
+The user should go through a 5-step “mission” flow before reaching the application form.
+
+The experience should psychologically:
+- build aspiration
+- create excitement
+- increase Instagram follows
+- make E-Cell feel premium
+- make students emotionally invested before applying
+
+This should feel like:
+“Unlocking the Mission”
+
+==================================================
+🎨 DESIGN SYSTEM
+==================================================
+
+STYLE:
+- Cinematic
+- Minimal
+- Premium
+- Dark UI
+- Startup-like
+- Smooth
+- Modern
+- Futuristic but realistic
+
+COLOR PALETTE:
+- Matte Black (#0b0b0b)
+- Deep Red (#b31217)
+- Soft White (#f5f5f5)
+- Grey accents
+
+TYPOGRAPHY:
+Use bold cinematic fonts.
+Large hero typography similar to Money Heist promotional aesthetics.
+Mix:
+- bold condensed headings
+- minimal clean body text
+
+UI FEEL:
+- smooth hover animations
+- glowing red accents
+- subtle grain texture
+- premium transitions
+- animated progress indicators
+- cinematic loading effects
+
+DO NOT:
+- overuse masks
+- spam Money Heist references
+- make it cringe
+- use cartoon elements
+- clutter the UI
+
+Use theme as inspiration only.
+
+==================================================
+🖥️ WEBSITE STRUCTURE
+==================================================
+
+The website should be a single-page interactive experience with sections that unlock progressively.
+
+A fixed top progress bar should track mission progress.
+
+Example:
+MISSION PROGRESS — 20%
+
+As users move through sections,
+the progress bar animates smoothly.
+
+==================================================
+🟥 SECTION 1 — HERO / THE SIGNAL
+==================================================
+
+FULLSCREEN HERO SECTION
+
+Background:
+- dark cinematic animated background
+- subtle vault door texture
+- moving particles/smoke/light rays
+
+CENTER TEXT:
+THE SIGNAL IS OUT
+
+Below:
+E-Cell IIST Indore officially opens
+TEAM RECRUITMENT 2026–27
+
+Subtext:
+“Not everyone watches opportunities.
+Some people build them.”
+
+Buttons:
+[ ENTER THE MISSION ]
+
+Effects:
+- cinematic fade in
+- smooth text reveal
+- subtle red glow animation
+
+Use uploaded logo professionally in navbar and hero.
+
+Navbar:
+- Logo
+- About
+- Domains
+- Mission
+- Apply
+
+Transparent navbar initially.
+Turns matte black on scroll.
+
+==================================================
+🟥 SECTION 2 — WHY E-CELL?
+==================================================
+
+Goal:
+Make students feel joining E-Cell gives opportunities and exposure.
+
+Layout:
+Premium card-based sections with hover animations.
+
+Title:
+WHY JOIN E-CELL?
+
+Cards with icons + animations:
+
+🚀 Startup Ecosystem Exposure
+🎯 National-Level Opportunities
+🤝 Networking with Founders
+📈 Leadership & Team Experience
+💡 Real Project Execution
+🎨 Creative & Technical Growth
+🏆 Competitions & Hackathons
+🌐 Community & Connections
+
+Add subtle motion effects while scrolling.
+
+Section should feel:
+professional + aspirational.
+
+==================================================
+🟥 SECTION 3 — INSIDE THE MISSION
+==================================================
+
+Goal:
+Show what E-Cell actually does.
+
+This should feel cinematic.
+
+Use:
+- event photos
+- reels preview
+- image grids
+- animated cards
+- achievement stats
+
+Title:
+INSIDE THE MISSION
+
+Subheading:
+“Execution. Innovation. Impact.”
+
+Include:
+- startup sessions
+- workshops
+- competitions
+- networking
+- hackathons
+- branding
+- entrepreneurship culture
+
+Add animated counters:
+- Events Conducted
+- Students Reached
+- Workshops
+- Collaborations
+
+Use smooth scroll reveal animations.
+
+==================================================
+🟥 SECTION 4 — DOMAINS
+==================================================
+
+This section is EXTREMELY IMPORTANT.
+
+Create visually stunning domain cards.
+
+Each card should have:
+- title
+- one-line description
+- hover animation
+- glow effect
+- cinematic appearance
+
+Domains:
+1. Creative
+2. Production
+3. Social Media
+4. PR & Outreach
+5. Management
+6. Tech
+
+Each domain card should expand slightly on hover.
+
+When clicked:
+open modal popup with:
+- what you'll work on
+- who should join
+- what you'll gain
+
+Use content inspired from uploaded posters.
+
+==================================================
+🟥 SECTION 5 — FOLLOW THE SIGNAL
+==================================================
+
+Goal:
+Make students follow Instagram before applying.
+
+This should feel interactive.
+
+Title:
+FOLLOW THE SIGNAL
+
+Add:
+- Instagram preview section
+- embedded reel/video placeholders
+- floating social animations
+
+Main CTA:
+FOLLOW @ecell_iist_indore
+
+After clicking follow button:
+unlock final application section visually.
+
+Add subtle unlock animation.
+
+==================================================
+🟥 SECTION 6 — FINAL APPLICATION
+==================================================
+
+This should feel like reaching the final vault.
+
+Background becomes darker and more dramatic.
+
+Large text:
+THE MISSION NEEDS BUILDERS.
+
+Subtext:
+“Creators. Strategists. Managers. Innovators.”
+
+Then:
+APPLICATIONS OPEN NOW
+
+Add:
+- glowing Apply button
+- embedded Google Form area OR placeholder
+- domain selection UI
+
+Button:
+[ APPLY NOW ]
+
+==================================================
+🎬 ANIMATIONS
+==================================================
+
+Use:
+- Framer Motion
+- smooth scrolling
+- cinematic fade transitions
+- stagger animations
+- text reveal effects
+- hover glows
+- subtle parallax
+
+Add:
+- mission unlock animations
+- progress animations
+- smooth card interactions
+
+VERY IMPORTANT:
+Animations should feel smooth and premium.
+NOT excessive.
+
+==================================================
+📱 RESPONSIVENESS
+==================================================
+
+Website must be:
+- fully mobile responsive
+- optimized for phones first
+- smooth on low-end devices
+- clean tablet experience
+- modern desktop experience
+
+==================================================
+⚙️ TECH STACK
+==================================================
+
+Use:
+- React
+- Tailwind CSS
+- Framer Motion
+- Modern component structure
+
+Code should be:
+- clean
+- scalable
+- production-level
+- modular
+
+==================================================
+🚨 FINAL OUTPUT REQUIREMENT
+==================================================
+
+Generate:
+- full frontend code
+- all sections
+- animations
+- reusable components
+- responsive design
+- proper spacing
+- premium UI
+- modern folder structure
+
+Do NOT generate placeholders everywhere.
+Actually design the full experience.
+
+Make this feel like:
+A startup launch + cinematic mission recruitment experience.
+
+The final output should look so premium that students immediately feel:
+“I want to be part of this.”
