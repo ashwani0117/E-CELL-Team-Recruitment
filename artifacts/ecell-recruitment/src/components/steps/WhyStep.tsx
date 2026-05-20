@@ -1,6 +1,12 @@
 import { useRef, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, ChevronDown, Building2, Trophy, Users, Target, Rocket, Zap, Swords, Globe, Award, BadgeCheck, Landmark } from "lucide-react";
+import achievement1 from "@assets/WhatsApp_3.20.51_PM_1779270780103.jpeg";
+import achievement2 from "@assets/WhatsApp_at_3.19.14_PM_1779270780103.jpeg";
+import achievement3 from "@assets/WhatsApp_Image_220_at_3.19.14_PM_1779270780103.jpeg";
+import achievement4 from "@assets/WhatsApp_Image_2026-05-20_at_3.19.10_PM_1779270780104.jpeg";
+import achievement5 from "@assets/WhatsApp_Image_2026-05-20_at_3.19.14_PM_1779270780104.jpeg";
+import achievement6 from "@assets/WhatsApp_Image9.15_PM_1779270780104.jpeg";
 
 interface WhyStepProps {
   onNext: () => void;
@@ -25,12 +31,12 @@ const highlights = [
 ];
 
 const achievementImages = [
-  { id: 1, label: "Certificate 01" },
-  { id: 2, label: "Certificate 02" },
-  { id: 3, label: "IIT Visit 01" },
-  { id: 4, label: "IIT Visit 02" },
-  { id: 5, label: "Member Win 01" },
-  { id: 6, label: "Member Win 02" },
+  { src: achievement1, label: "Achievement 01" },
+  { src: achievement2, label: "Achievement 02" },
+  { src: achievement3, label: "Achievement 03" },
+  { src: achievement4, label: "Achievement 04" },
+  { src: achievement5, label: "Achievement 05" },
+  { src: achievement6, label: "Achievement 06" },
 ];
 
 export default function WhyStep({ onNext, onBack }: WhyStepProps) {
@@ -110,20 +116,16 @@ export default function WhyStep({ onNext, onBack }: WhyStepProps) {
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
               {achievementImages.map((item, i) => (
                 <motion.div
-                  key={item.id}
+                  key={item.label}
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.4, delay: 0.2 + i * 0.06 }}
                   className="aspect-square border border-white/5 rounded-sm overflow-hidden relative bg-[#111] group"
                 >
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(179,18,23,0.22)_0%,transparent_70%)]" />
-                  <div className="absolute inset-0 flex items-center justify-center p-3 text-center">
-                    <div className="space-y-2">
-                      <div className="w-10 h-10 sm:w-12 sm:h-12 mx-auto rounded-full border border-primary/40 bg-primary/10 flex items-center justify-center text-primary text-[9px] sm:text-[10px] font-mono uppercase tracking-widest">
-                        {String(item.id).padStart(2, "0")}
-                      </div>
-                      <p className="text-white/40 text-[9px] sm:text-[10px] uppercase tracking-[0.2em] sm:tracking-[0.25em]">{item.label}</p>
-                    </div>
+                  <img src={item.src} alt={item.label} className="absolute inset-0 w-full h-full object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                  <div className="absolute inset-0 flex items-end p-3">
+                    <p className="text-white text-[9px] sm:text-[10px] uppercase tracking-[0.2em] sm:tracking-[0.25em] drop-shadow">{item.label}</p>
                   </div>
                 </motion.div>
               ))}
@@ -137,7 +139,6 @@ export default function WhyStep({ onNext, onBack }: WhyStepProps) {
         </motion.div>
       </div>
 
-      {/* Scroll hint */}
       <AnimatePresence>
         {showScrollHint && (
           <motion.div
