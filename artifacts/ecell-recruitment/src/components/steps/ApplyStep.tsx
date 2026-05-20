@@ -9,7 +9,7 @@ interface ApplyStepProps {
 
 const years = ["1st Year", "2nd Year"];
 
-const GOOGLE_FORM_URL = "https://forms.google.com"; // Replace with actual form link
+const GOOGLE_FORM_URL = "https://forms.gle/CAojQmnQaKfMzaXz7";
 
 export default function ApplyStep({ onBack, selectedDomain }: ApplyStepProps) {
   const [form, setForm] = useState({ name: "", branch: "", year: "" });
@@ -240,7 +240,6 @@ export default function ApplyStep({ onBack, selectedDomain }: ApplyStepProps) {
         </div>
       </div>
 
-      {/* Scroll hint */}
       <AnimatePresence>
         {showScrollHint && (
           <motion.div
