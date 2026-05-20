@@ -54,7 +54,7 @@ const activities = [
 
 const missionImages = [
   { src: inside1, label: "Entrepreneurship talk" },
-  { src: inside2, label: "Audience session" },
+  { src: inside2, label: "Workshop" },
   { src: inside3, label: "Team discussion" },
   { src: inside4, label: "Hackathon winners" },
   { src: inside5, label: "Workshop group photo" },
@@ -126,28 +126,6 @@ export default function InsideStep({ onNext, onBack }: InsideStepProps) {
                 </motion.div>
               ))}
             </div>
-          </div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-2 sm:gap-3 mb-6">
-            {activities.map((a, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.4, delay: 0.3 + i * 0.08 }}
-                className="aspect-video bg-[#141414] border border-white/5 flex items-end p-3 sm:p-4 rounded-sm relative overflow-hidden group"
-              >
-                <div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  style={{ background: `radial-gradient(circle at ${20 + i * 15}% 50%, rgba(179,18,23,0.12), transparent 70%)` }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-                <div className="relative z-10 flex items-center justify-between w-full">
-                  <span className="font-mono text-[8px] sm:text-[9px] text-primary/60 uppercase">File {a.file}</span>
-                  <span className="font-bold text-white text-[9px] sm:text-[10px] uppercase tracking-wide text-right">{a.label}</span>
-                </div>
-              </motion.div>
-            ))}
           </div>
 
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1, duration: 0.8 }} className="text-center pb-4">
