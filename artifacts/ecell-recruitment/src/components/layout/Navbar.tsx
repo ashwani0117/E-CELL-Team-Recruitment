@@ -21,9 +21,9 @@ export default function Navbar({ step, totalSteps, stepTitle, goToStep }: Navbar
       <div className="mx-auto px-3 sm:px-4 md:px-8 h-[64px] sm:h-[72px] flex items-center justify-between gap-2">
         <button onClick={() => goToStep(0)} className="flex items-center gap-2 sm:gap-3 shrink-0" data-testid="nav-logo">
           <img src={ecellLogo} alt="E-Cell IIST" className="h-8 w-8 sm:h-10 sm:w-10 object-contain" />
-          <div>
+          <div className="flex flex-col items-start leading-none">
             <div className="font-display text-base sm:text-lg text-white uppercase tracking-widest leading-none">E-Cell</div>
-            <div className="text-[9px] sm:text-[10px] font-mono text-white/40 tracking-[0.2em] uppercase">IIST</div>
+            <div className="text-[9px] sm:text-[10px] font-mono text-white/40 tracking-[0.2em] uppercase leading-none mt-0.5">IIST</div>
           </div>
         </button>
 

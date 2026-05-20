@@ -31,12 +31,12 @@ const highlights = [
 ];
 
 const achievementImages = [
-  { src: achievement1, label: "Achievement 01" },
-  { src: achievement2, label: "Achievement 02" },
-  { src: achievement3, label: "Achievement 03" },
-  { src: achievement4, label: "Achievement 04" },
-  { src: achievement5, label: "Achievement 05" },
-  { src: achievement6, label: "Achievement 06" },
+  { src: achievement1, label: "NEC certificate by IIT Bombay" },
+  { src: achievement2, label: "Visit IIT Bombay for the NEC finals" },
+  { src: achievement3, label: "A memorable tour in Mumbai" },
+  { src: achievement4, label: "Startup pitch talk" },
+  { src: achievement5, label: "ESummit 2025" },
+  { src: achievement6, label: "YEF summit with CM Dr. Mohan Yadav" },
 ];
 
 export default function WhyStep({ onNext, onBack }: WhyStepProps) {
@@ -110,7 +110,7 @@ export default function WhyStep({ onNext, onBack }: WhyStepProps) {
           <div className="mb-8 sm:mb-10">
             <div className="flex items-center gap-2 mb-3 sm:mb-4">
               <span className="h-px flex-1 bg-white/10" />
-              <p className="text-[9px] sm:text-[10px] font-mono text-primary uppercase tracking-[0.35em]">Achievement Gallery</p>
+              <p className="text-[9px] sm:text-[10px] font-mono text-primary uppercase tracking-[0.35em]">Highlight Gallery</p>
               <span className="h-px flex-1 bg-white/10" />
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
@@ -125,7 +125,7 @@ export default function WhyStep({ onNext, onBack }: WhyStepProps) {
                   <img src={item.src} alt={item.label} className="absolute inset-0 w-full h-full object-cover" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
                   <div className="absolute inset-0 flex items-end p-3">
-                    <p className="text-white text-[9px] sm:text-[10px] uppercase tracking-[0.2em] sm:tracking-[0.25em] drop-shadow">{item.label}</p>
+                    <p className="text-white text-[9px] sm:text-[10px] uppercase tracking-[0.14em] sm:tracking-[0.18em] drop-shadow leading-tight">{item.label}</p>
                   </div>
                 </motion.div>
               ))}
