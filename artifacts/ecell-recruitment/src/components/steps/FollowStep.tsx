@@ -34,7 +34,7 @@ export default function FollowStep({ onNext, onBack }: FollowStepProps) {
   }
 
   function handleWA() {
-    window.open("https://chat.whatsapp.com/", "_blank");
+    window.open("https://chat.whatsapp.com/EACdXJVdFHfBEzq20pOQMr", "_blank");
     setJoinedWA(true);
   }
 
@@ -61,7 +61,6 @@ export default function FollowStep({ onNext, onBack }: FollowStepProps) {
             </p>
           </motion.div>
 
-          {/* Progress tracker */}
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
@@ -79,7 +78,6 @@ export default function FollowStep({ onNext, onBack }: FollowStepProps) {
           </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-            {/* Instagram */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -115,7 +113,6 @@ export default function FollowStep({ onNext, onBack }: FollowStepProps) {
               </button>
             </motion.div>
 
-            {/* WhatsApp */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -181,7 +178,6 @@ export default function FollowStep({ onNext, onBack }: FollowStepProps) {
         </div>
       </div>
 
-      {/* Scroll hint */}
       <AnimatePresence>
         {showScrollHint && (
           <motion.div
