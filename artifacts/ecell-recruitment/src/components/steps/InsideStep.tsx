@@ -1,6 +1,6 @@
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, ChevronDown } from "lucide-react";
 
 interface InsideStepProps {
   onNext: () => void;
@@ -26,11 +26,11 @@ function Counter({ end, label, suffix = "+" }: { end: number; label: string; suf
   }, [isInView, end]);
 
   return (
-    <div ref={ref} className="text-center border border-white/5 bg-[#111] p-5 rounded-sm">
-      <div className="font-display text-4xl md:text-5xl text-primary leading-none mb-1">
+    <div ref={ref} className="text-center border border-white/5 bg-[#111] p-3 sm:p-5 rounded-sm">
+      <div className="font-display text-3xl sm:text-4xl md:text-5xl text-primary leading-none mb-1">
         {count}{suffix}
       </div>
-      <div className="text-[10px] font-mono uppercase tracking-widest text-white/40">{label}</div>
+      <div className="text-[9px] sm:text-[10px] font-mono uppercase tracking-widest text-white/40">{label}</div>
     </div>
   );
 }
@@ -45,48 +45,55 @@ const activities = [
 ];
 
 export default function InsideStep({ onNext, onBack }: InsideStepProps) {
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [showScrollHint, setShowScrollHint] = useState(false);
+
+  useEffect(() => {
+    const el = contentRef.current;
+    if (!el) return;
+    const check = () => setShowScrollHint(el.scrollHeight > el.clientHeight + 16 && el.scrollTop < el.scrollHeight - el.clientHeight - 16);
+    check();
+    el.addEventListener("scroll", check);
+    window.addEventListener("resize", check);
+    return () => { el.removeEventListener("scroll", check); window.removeEventListener("resize", check); };
+  }, []);
+
   return (
     <div className="relative h-full w-full flex flex-col overflow-hidden">
       <div className="absolute inset-0 bg-[#0d0d0d]" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(179,18,23,0.07)_0%,transparent_60%)]" />
 
-      {/* Classified document top bar */}
-      <div className="relative z-10 border-b border-white/5 bg-[#0f0f0f]/80 px-6 py-3 flex items-center gap-4">
-        <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-        <span className="font-mono text-[10px] text-primary uppercase tracking-[0.3em]">Operations File — Document 03</span>
-        <div className="ml-auto font-mono text-[10px] text-white/20 uppercase tracking-widest">Classified</div>
+      <div className="relative z-10 border-b border-white/5 bg-[#0f0f0f]/80 px-4 sm:px-6 py-3 flex items-center gap-3">
+        <div className="w-2 h-2 rounded-full bg-primary animate-pulse shrink-0" />
+        <span className="font-mono text-[9px] sm:text-[10px] text-primary uppercase tracking-[0.25em] sm:tracking-[0.3em]">Operations File — Document 03</span>
+        <div className="ml-auto font-mono text-[9px] text-white/20 hidden sm:block uppercase tracking-widest">Classified</div>
       </div>
 
-      <div className="relative z-10 flex-1 overflow-y-auto px-6 py-6 md:px-10">
+      <div ref={contentRef} className="relative z-10 flex-1 overflow-y-auto min-h-0 px-4 sm:px-6 md:px-10 py-5 sm:py-6">
         <div className="max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="mb-8"
-          >
-            <h2 className="font-display text-[clamp(2.5rem,7vw,5rem)] text-white uppercase tracking-wider mb-1">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="mb-6 sm:mb-8">
+            <h2 className="font-display text-[clamp(2.2rem,7vw,5rem)] text-white uppercase tracking-wider mb-1">
               Inside The <span className="text-primary">Mission</span>
             </h2>
-            <div className="h-[2px] w-16 bg-primary mb-3" />
+            <div className="h-[2px] w-12 bg-primary mb-3" />
             <p className="text-white/40 text-xs font-mono uppercase tracking-[0.2em]">Execution. Innovation. Impact.</p>
           </motion.div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 mb-6 sm:mb-8">
             <Counter end={50} label="Events Conducted" />
             <Counter end={3000} label="Students Reached" />
             <Counter end={30} label="Workshops" />
             <Counter end={20} label="Collaborations" />
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-2 sm:gap-3 mb-6">
             {activities.map((a, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.4, delay: 0.3 + i * 0.08 }}
-                className="aspect-video bg-[#141414] border border-white/5 flex items-end p-4 rounded-sm relative overflow-hidden group"
+                className="aspect-video bg-[#141414] border border-white/5 flex items-end p-3 sm:p-4 rounded-sm relative overflow-hidden group"
               >
                 <div
                   className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
@@ -94,41 +101,51 @@ export default function InsideStep({ onNext, onBack }: InsideStepProps) {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
                 <div className="relative z-10 flex items-center justify-between w-full">
-                  <span className="font-mono text-[9px] text-primary/60 uppercase">File {a.file}</span>
-                  <span className="font-bold text-white text-[10px] uppercase tracking-wide text-right">{a.label}</span>
+                  <span className="font-mono text-[8px] sm:text-[9px] text-primary/60 uppercase">File {a.file}</span>
+                  <span className="font-bold text-white text-[9px] sm:text-[10px] uppercase tracking-wide text-right">{a.label}</span>
                 </div>
               </motion.div>
             ))}
           </div>
 
-          {/* Bella Ciao easter egg — subtle */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1, duration: 0.8 }}
-            className="text-center"
-          >
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1, duration: 0.8 }} className="text-center pb-4">
             <p className="text-white/10 text-[10px] font-mono uppercase tracking-[0.5em]">bella ciao, bella ciao</p>
           </motion.div>
         </div>
       </div>
 
-      <div className="relative z-10 border-t border-white/5 bg-[#0b0b0b]/90 px-6 py-4 flex items-center justify-between">
+      <AnimatePresence>
+        {showScrollHint && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="absolute bottom-[60px] left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1 pointer-events-none"
+          >
+            <span className="text-[9px] font-mono text-white/25 uppercase tracking-widest">Scroll for more</span>
+            <motion.div animate={{ y: [0, 4, 0] }} transition={{ duration: 1.2, repeat: Infinity }}>
+              <ChevronDown className="w-4 h-4 text-white/25" />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <div className="relative z-10 border-t border-white/5 bg-[#0b0b0b]/95 px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between gap-2">
         <button
           data-testid="inside-back-btn"
           onClick={onBack}
-          className="flex items-center gap-2 text-white/40 hover:text-white text-xs font-mono uppercase tracking-widest transition-colors"
+          className="flex items-center gap-1.5 text-white/40 hover:text-white text-xs font-mono uppercase tracking-widest transition-colors shrink-0"
         >
           <ChevronLeft className="w-4 h-4" />
-          Back
+          <span className="hidden sm:inline">Back</span>
         </button>
-        <span className="text-[10px] font-mono text-white/20 uppercase tracking-widest">Step 3 of 6</span>
+        <span className="text-[9px] font-mono text-white/20 uppercase tracking-widest">Step 3 of 6</span>
         <motion.button
           data-testid="inside-next-btn"
           onClick={onNext}
           whileHover={{ scale: 1.04 }}
           whileTap={{ scale: 0.97 }}
-          className="flex items-center gap-2 px-6 py-2.5 border border-primary text-white font-bold text-xs uppercase tracking-widest hover:bg-primary transition-colors duration-300"
+          className="flex items-center gap-1.5 sm:gap-2 px-4 sm:px-6 py-2.5 border border-primary text-white font-bold text-xs uppercase tracking-widest hover:bg-primary active:scale-95 transition-all duration-300 shrink-0"
         >
           Next
           <ChevronRight className="w-4 h-4" />

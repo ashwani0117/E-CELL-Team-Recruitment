@@ -9,7 +9,7 @@ export default function StepProgress({ current, total }: StepProgressProps) {
   const percent = Math.round(((current + 1) / total) * 100);
 
   return (
-    <div className="fixed top-[72px] left-0 w-full z-50 h-[3px] bg-white/5">
+    <div className="fixed top-[64px] sm:top-[72px] left-0 w-full z-50 h-[2px] sm:h-[3px] bg-white/5">
       <motion.div
         className="h-full bg-primary"
         style={{ boxShadow: "0 0 8px rgba(179,18,23,0.8)" }}

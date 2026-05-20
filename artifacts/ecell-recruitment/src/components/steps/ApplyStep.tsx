@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ExternalLink } from "lucide-react";
+import { ChevronLeft, ChevronDown, ExternalLink } from "lucide-react";
 
 interface ApplyStepProps {
   onBack: () => void;
@@ -15,6 +15,18 @@ export default function ApplyStep({ onBack, selectedDomain }: ApplyStepProps) {
   const [form, setForm] = useState({ name: "", branch: "", year: "" });
   const [errors, setErrors] = useState<Partial<typeof form>>({});
   const [ready, setReady] = useState(false);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [showScrollHint, setShowScrollHint] = useState(false);
+
+  useEffect(() => {
+    const el = contentRef.current;
+    if (!el) return;
+    const check = () => setShowScrollHint(el.scrollHeight > el.clientHeight + 16 && el.scrollTop < el.scrollHeight - el.clientHeight - 16);
+    check();
+    el.addEventListener("scroll", check);
+    window.addEventListener("resize", check);
+    return () => { el.removeEventListener("scroll", check); window.removeEventListener("resize", check); };
+  }, [ready]);
 
   function update(field: keyof typeof form, value: string) {
     setForm((f) => ({ ...f, [field]: value }));
@@ -26,7 +38,7 @@ export default function ApplyStep({ onBack, selectedDomain }: ApplyStepProps) {
     const newErrors: Partial<typeof form> = {};
     if (!form.name.trim()) newErrors.name = "Required";
     if (!form.branch.trim()) newErrors.branch = "Required";
-    if (!form.year) newErrors.year = "Required";
+    if (!form.year) newErrors.year = "Select your year";
     setErrors(newErrors);
     if (Object.keys(newErrors).length === 0) setReady(true);
   }
@@ -44,7 +56,7 @@ export default function ApplyStep({ onBack, selectedDomain }: ApplyStepProps) {
   const inputClass = (field: string) =>
     `w-full bg-[#0f0f0f] border ${
       errors[field as keyof typeof errors] ? "border-red-500/60" : "border-white/10 focus:border-primary/60"
-    } text-white text-sm px-4 py-3 outline-none font-mono transition-colors duration-200 placeholder:text-white/20`;
+    } text-white text-sm px-4 py-3 outline-none font-mono transition-colors duration-200 placeholder:text-white/20 rounded-none`;
 
   const labelClass = "block text-[10px] font-mono text-white/40 uppercase tracking-[0.2em] mb-1.5";
 
@@ -59,14 +71,14 @@ export default function ApplyStep({ onBack, selectedDomain }: ApplyStepProps) {
         transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
       />
 
-      <div className="relative z-10 border-b border-primary/20 bg-[#0a0a0a]/90 px-6 py-3 flex items-center gap-4">
-        <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-        <span className="font-mono text-[10px] text-primary uppercase tracking-[0.3em]">Final Vault — Document 06</span>
-        <div className="ml-auto font-mono text-[10px] text-primary/40 uppercase tracking-widest">Applications Open</div>
+      <div className="relative z-10 border-b border-primary/20 bg-[#0a0a0a]/90 px-4 sm:px-6 py-3 flex items-center gap-3">
+        <div className="w-2 h-2 rounded-full bg-primary animate-pulse shrink-0" />
+        <span className="font-mono text-[9px] sm:text-[10px] text-primary uppercase tracking-[0.25em] sm:tracking-[0.3em]">Final Vault — Document 06</span>
+        <div className="ml-auto font-mono text-[9px] text-primary/40 hidden sm:block uppercase tracking-widest">Applications Open</div>
       </div>
 
-      <div className="relative z-10 flex-1 flex items-center justify-center px-6 py-8 md:px-10">
-        <div className="w-full max-w-md">
+      <div ref={contentRef} className="relative z-10 flex-1 overflow-y-auto min-h-0 px-4 sm:px-6 md:px-10 py-6">
+        <div className="w-full max-w-md mx-auto">
           <AnimatePresence mode="wait">
             {!ready ? (
               <motion.div
@@ -76,20 +88,20 @@ export default function ApplyStep({ onBack, selectedDomain }: ApplyStepProps) {
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.4 }}
               >
-                <div className="mb-8 text-left">
+                <div className="mb-6 sm:mb-8 text-left">
                   <h2 className="font-display text-[clamp(2rem,6vw,4rem)] text-white uppercase tracking-wider leading-none mb-1">
                     The Mission<br />
                     <span className="text-primary" style={{ textShadow: "0 0 30px rgba(179,18,23,0.5)" }}>
                       Needs You.
                     </span>
                   </h2>
-                  <div className="h-[2px] w-16 bg-primary mb-3" />
+                  <div className="h-[2px] w-12 bg-primary mb-3" />
                   <p className="text-white/30 text-xs font-mono uppercase tracking-widest">
                     Quick details before the application
                   </p>
                 </div>
 
-                <form onSubmit={handleProceed} className="space-y-5">
+                <form onSubmit={handleProceed} className="space-y-4 sm:space-y-5">
                   <div>
                     <label className={labelClass}>Full Name *</label>
                     <input
@@ -118,17 +130,17 @@ export default function ApplyStep({ onBack, selectedDomain }: ApplyStepProps) {
 
                   <div>
                     <label className={labelClass}>Year of Study *</label>
-                    <div className="flex gap-3">
+                    <div className="flex gap-2 sm:gap-3">
                       {years.map((y) => (
                         <button
                           key={y}
                           type="button"
                           data-testid={`year-btn-${y.replace(/\s+/g, "-").toLowerCase()}`}
-                          onClick={() => { update("year", y); }}
+                          onClick={() => update("year", y)}
                           className={`flex-1 py-3 font-bold text-xs uppercase tracking-widest border transition-all duration-200 ${
                             form.year === y
                               ? "border-primary bg-primary text-white"
-                              : "border-white/10 text-white/40 hover:border-primary/40 hover:text-white/70"
+                              : "border-white/10 text-white/40 hover:border-primary/40 hover:text-white/70 active:scale-95"
                           }`}
                         >
                           {y}
@@ -151,13 +163,15 @@ export default function ApplyStep({ onBack, selectedDomain }: ApplyStepProps) {
                     data-testid="proceed-btn"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.97 }}
-                    className="w-full flex items-center justify-center gap-3 py-4 bg-primary text-white font-bold uppercase tracking-[0.25em] text-sm"
+                    className="w-full flex items-center justify-center gap-3 py-4 bg-primary text-white font-bold uppercase tracking-[0.2em] sm:tracking-[0.25em] text-sm"
                     style={{ boxShadow: "0 0 25px rgba(179,18,23,0.4)" }}
                   >
                     Proceed to Application
                     <ExternalLink className="w-4 h-4" />
                   </motion.button>
                 </form>
+
+                <div className="h-4" />
               </motion.div>
             ) : (
               <motion.div
@@ -168,34 +182,36 @@ export default function ApplyStep({ onBack, selectedDomain }: ApplyStepProps) {
                 transition={{ duration: 0.45 }}
                 className="text-center"
               >
-                <div className="mb-8">
+                <div className="mb-6 sm:mb-8">
+                  <motion.div
+                    initial={{ scale: 0.5, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ duration: 0.5, delay: 0.1 }}
+                    className="w-16 h-16 mx-auto mb-5 rounded-full border border-primary bg-primary/10 flex items-center justify-center"
+                    style={{ boxShadow: "0 0 30px rgba(179,18,23,0.4)" }}
+                  >
+                    <span className="text-primary text-2xl font-display">✓</span>
+                  </motion.div>
                   <h2 className="font-display text-[clamp(2rem,6vw,4rem)] text-white uppercase tracking-wider leading-none mb-1">
                     Vault <span className="text-primary">Unlocked.</span>
                   </h2>
-                  <div className="h-[2px] w-16 bg-primary mx-auto mb-4" />
+                  <div className="h-[2px] w-12 bg-primary mx-auto mb-4" />
                   <p className="text-white/40 text-sm">Your details are ready. Open the application form to complete your submission.</p>
                 </div>
 
-                <div className="border border-white/5 bg-[#111] px-6 py-5 text-left space-y-3 rounded-sm mb-8">
+                <div className="border border-white/5 bg-[#111] px-5 sm:px-6 py-4 sm:py-5 text-left space-y-3 rounded-sm mb-6 sm:mb-8">
                   <p className="text-[9px] font-mono text-white/25 uppercase tracking-widest mb-3">Your Details</p>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-white/40 font-mono text-xs">Name</span>
-                    <span className="text-white font-medium">{form.name}</span>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-white/40 font-mono text-xs">Branch</span>
-                    <span className="text-white">{form.branch}</span>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-white/40 font-mono text-xs">Year</span>
-                    <span className="text-white">{form.year}</span>
-                  </div>
-                  {selectedDomain && (
-                    <div className="flex justify-between text-sm">
-                      <span className="text-white/40 font-mono text-xs">Domain</span>
-                      <span className="text-primary font-bold">{selectedDomain}</span>
+                  {[
+                    { label: "Name", value: form.name },
+                    { label: "Branch", value: form.branch },
+                    { label: "Year", value: form.year },
+                    ...(selectedDomain ? [{ label: "Domain", value: selectedDomain, highlight: true }] : []),
+                  ].map((row) => (
+                    <div key={row.label} className="flex justify-between items-center text-sm gap-4">
+                      <span className="text-white/40 font-mono text-xs shrink-0">{row.label}</span>
+                      <span className={(row as any).highlight ? "text-primary font-bold" : "text-white"}>{row.value}</span>
                     </div>
-                  )}
+                  ))}
                 </div>
 
                 <motion.button
@@ -203,7 +219,7 @@ export default function ApplyStep({ onBack, selectedDomain }: ApplyStepProps) {
                   onClick={openForm}
                   whileHover={{ scale: 1.04 }}
                   whileTap={{ scale: 0.97 }}
-                  className="w-full flex items-center justify-center gap-3 py-4 bg-primary text-white font-bold uppercase tracking-[0.25em] text-sm mb-4"
+                  className="w-full flex items-center justify-center gap-3 py-4 bg-primary text-white font-bold uppercase tracking-[0.2em] sm:tracking-[0.25em] text-sm mb-4"
                   style={{ boxShadow: "0 0 30px rgba(179,18,23,0.5)" }}
                 >
                   Open Application Form
@@ -216,23 +232,43 @@ export default function ApplyStep({ onBack, selectedDomain }: ApplyStepProps) {
                 >
                   Edit details
                 </button>
+
+                <div className="h-6" />
               </motion.div>
             )}
           </AnimatePresence>
         </div>
       </div>
 
+      {/* Scroll hint */}
+      <AnimatePresence>
+        {showScrollHint && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="absolute bottom-[60px] left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1 pointer-events-none"
+          >
+            <span className="text-[9px] font-mono text-white/25 uppercase tracking-widest">Scroll down</span>
+            <motion.div animate={{ y: [0, 4, 0] }} transition={{ duration: 1.2, repeat: Infinity }}>
+              <ChevronDown className="w-4 h-4 text-white/25" />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {!ready && (
-        <div className="relative z-10 border-t border-white/5 bg-[#0b0b0b]/90 px-6 py-4 flex items-center justify-between">
+        <div className="relative z-10 border-t border-white/5 bg-[#0b0b0b]/95 px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between gap-2">
           <button
             data-testid="apply-back-btn"
             onClick={onBack}
-            className="flex items-center gap-2 text-white/40 hover:text-white text-xs font-mono uppercase tracking-widest transition-colors"
+            className="flex items-center gap-1.5 text-white/40 hover:text-white text-xs font-mono uppercase tracking-widest transition-colors shrink-0"
           >
             <ChevronLeft className="w-4 h-4" />
-            Back
+            <span className="hidden sm:inline">Back</span>
           </button>
-          <span className="text-[10px] font-mono text-white/20 uppercase tracking-widest">Step 6 of 6 — Final</span>
+          <span className="text-[9px] font-mono text-white/20 uppercase tracking-widest">Step 6 of 6 — Final</span>
+          <div className="w-[60px] sm:w-[80px]" />
         </div>
       )}
     </div>

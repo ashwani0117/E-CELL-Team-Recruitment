@@ -10,13 +10,18 @@ import FollowStep from "@/components/steps/FollowStep";
 import ApplyStep from "@/components/steps/ApplyStep";
 
 const TOTAL_STEPS = 6;
-
 const stepTitles = ["The Signal", "The Briefing", "The Operation", "Choose Your Role", "Join The Network", "Enter The Vault"];
 
 const slideVariants = {
-  enter: (direction: number) => ({ x: direction > 0 ? "100%" : "-100%", opacity: 0 }),
+  enter: (direction: number) => ({
+    x: direction > 0 ? "100%" : "-100%",
+    opacity: 0,
+  }),
   center: { x: 0, opacity: 1 },
-  exit: (direction: number) => ({ x: direction < 0 ? "100%" : "-100%", opacity: 0 }),
+  exit: (direction: number) => ({
+    x: direction < 0 ? "100%" : "-100%",
+    opacity: 0,
+  }),
 };
 
 export default function Home() {
@@ -34,6 +39,11 @@ export default function Home() {
     setStep((s) => Math.max(s - 1, 0));
   }
 
+  function goToStep(s: number) {
+    setDirection(s > step ? 1 : -1);
+    setStep(s);
+  }
+
   const steps = [
     <HeroStep onNext={goNext} />,
     <WhyStep onNext={goNext} onBack={goBack} />,
@@ -43,13 +53,28 @@ export default function Home() {
     <ApplyStep onBack={goBack} selectedDomain={selectedDomain} />,
   ];
 
+  const navbarHeight = "64px";
+
   return (
-    <div className="relative h-[100dvh] w-full bg-[#0b0b0b] overflow-hidden text-white selection:bg-primary selection:text-white">
+    <div
+      className="relative w-full bg-[#0b0b0b] overflow-hidden text-white selection:bg-primary selection:text-white"
+      style={{ height: "100dvh" }}
+    >
       <div className="noise-overlay" />
-      <Navbar step={step} totalSteps={TOTAL_STEPS} stepTitle={stepTitles[step]} goToStep={(s) => { setDirection(s > step ? 1 : -1); setStep(s); }} />
+      <Navbar step={step} totalSteps={TOTAL_STEPS} stepTitle={stepTitles[step]} goToStep={goToStep} />
       <StepProgress current={step} total={TOTAL_STEPS} />
       <AnimatePresence mode="wait" custom={direction}>
-        <motion.div key={step} custom={direction} variants={slideVariants} initial="enter" animate="center" exit="exit" transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }} className="absolute inset-0 pt-[72px]">
+        <motion.div
+          key={step}
+          custom={direction}
+          variants={slideVariants}
+          initial="enter"
+          animate="center"
+          exit="exit"
+          transition={{ duration: 0.45, ease: [0.76, 0, 0.24, 1] }}
+          className="absolute left-0 right-0 bottom-0"
+          style={{ top: navbarHeight }}
+        >
           {steps[step]}
         </motion.div>
       </AnimatePresence>
