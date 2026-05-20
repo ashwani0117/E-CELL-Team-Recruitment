@@ -8,6 +8,7 @@ Steps to deploy the Vite frontend located in `artifacts/ecell-recruitment`:
    - Install Command: `pnpm install`
    - Build Command: `pnpm build` (will run the `build` script in the package.json)
    - Output Directory: `dist`
+      - Output Directory: `dist/public` (Vite is configured to write to `dist/public`)
 4. Add any environment variables under Project Settings if needed.
 5. Deploy.
 
