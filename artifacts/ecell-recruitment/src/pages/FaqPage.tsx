@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { ChevronLeft, HelpCircle } from "lucide-react";
 
 const faqs = [
@@ -20,6 +20,9 @@ const faqs = [
 ];
 
 export default function FaqPage() {
+  const [location] = useLocation();
+  const from = new URLSearchParams(location.split("?")[1] ?? "").get("from") ?? "0";
+
   return (
     <div className="min-h-screen bg-[#0b0b0b] text-white pt-24 pb-16 px-6 md:px-10">
       <div className="max-w-5xl mx-auto">
@@ -29,9 +32,9 @@ export default function FaqPage() {
             <h1 className="font-display text-[clamp(2.6rem,7vw,5rem)] uppercase tracking-wider leading-none">Questions <span className="text-primary">Answered</span></h1>
             <p className="text-white/40 text-xs font-mono uppercase tracking-widest mt-3">Everything you need before joining the mission</p>
           </div>
-          <Link href="/" className="inline-flex items-center gap-2 px-4 py-2 border border-primary/60 bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-[0.25em] rounded-full shadow-[0_0_18px_rgba(179,18,23,0.28)]">
+          <Link href={`/?step=${from}`} className="inline-flex items-center gap-2 px-4 py-2 border border-primary/60 bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-[0.25em] rounded-full shadow-[0_0_18px_rgba(179,18,23,0.28)]">
             <ChevronLeft className="w-4 h-4" />
-            Back Home
+            Back
           </Link>
         </div>
 

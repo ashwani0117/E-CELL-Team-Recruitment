@@ -51,7 +51,7 @@ export default function Navbar({ step, totalSteps, stepTitle, goToStep }: Navbar
 
         <div className="flex items-center gap-2 sm:gap-3 shrink-0">
           <Link
-            href="/faq"
+            href={`/faq?from=${step}`}
             data-testid="nav-faq-link"
             className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-full border border-primary bg-primary/15 text-primary text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.2em] sm:tracking-[0.24em] shadow-[0_0_18px_rgba(179,18,23,0.45)]"
           >

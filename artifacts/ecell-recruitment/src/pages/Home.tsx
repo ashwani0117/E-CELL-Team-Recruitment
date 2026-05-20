@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Navbar from "@/components/layout/Navbar";
 import StepProgress from "@/components/layout/StepProgress";
@@ -11,6 +11,7 @@ import ApplyStep from "@/components/steps/ApplyStep";
 
 const TOTAL_STEPS = 6;
 const stepTitles = ["The Signal", "The Briefing", "The Operation", "Choose Your Role", "Join The Network", "Enter The Vault"];
+const STEP_STORAGE_KEY = "ecell-recruitment-step";
 
 const slideVariants = {
   enter: (direction: number) => ({
@@ -25,9 +26,16 @@ const slideVariants = {
 };
 
 export default function Home() {
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(() => {
+    const saved = Number(window.sessionStorage.getItem(STEP_STORAGE_KEY));
+    return Number.isFinite(saved) && saved >= 0 && saved < TOTAL_STEPS ? saved : 0;
+  });
   const [direction, setDirection] = useState(1);
   const [selectedDomain, setSelectedDomain] = useState("");
+
+  useEffect(() => {
+    window.sessionStorage.setItem(STEP_STORAGE_KEY, String(step));
+  }, [step]);
 
   function goNext() {
     setDirection(1);
@@ -53,8 +61,6 @@ export default function Home() {
     <ApplyStep onBack={goBack} selectedDomain={selectedDomain} />,
   ];
 
-  const navbarHeight = "64px";
-
   return (
     <div
       className="relative w-full bg-[#0b0b0b] overflow-hidden text-white selection:bg-primary selection:text-white"
@@ -73,7 +79,7 @@ export default function Home() {
           exit="exit"
           transition={{ duration: 0.45, ease: [0.76, 0, 0.24, 1] }}
           className="absolute left-0 right-0 bottom-0"
-          style={{ top: navbarHeight }}
+          style={{ top: "64px" }}
         >
           {steps[step]}
         </motion.div>
