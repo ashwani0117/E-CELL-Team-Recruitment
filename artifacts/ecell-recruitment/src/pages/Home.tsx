@@ -7,12 +7,11 @@ import WhyStep from "@/components/steps/WhyStep";
 import InsideStep from "@/components/steps/InsideStep";
 import DomainsStep from "@/components/steps/DomainsStep";
 import FollowStep from "@/components/steps/FollowStep";
-import FaqStep from "@/components/steps/FaqStep";
 import ApplyStep from "@/components/steps/ApplyStep";
 
-const TOTAL_STEPS = 7;
+const TOTAL_STEPS = 6;
 
-const stepTitles = ["The Signal", "The Briefing", "The Operation", "Choose Your Role", "Join The Network", "FAQ", "Enter The Vault"];
+const stepTitles = ["The Signal", "The Briefing", "The Operation", "Choose Your Role", "Join The Network", "Enter The Vault"];
 
 const slideVariants = {
   enter: (direction: number) => ({ x: direction > 0 ? "100%" : "-100%", opacity: 0 }),
@@ -41,7 +40,6 @@ export default function Home() {
     <InsideStep onNext={goNext} onBack={goBack} />,
     <DomainsStep onNext={goNext} onBack={goBack} selectedDomain={selectedDomain} onDomainSelect={setSelectedDomain} />,
     <FollowStep onNext={goNext} onBack={goBack} />,
-    <FaqStep onNext={goNext} onBack={goBack} />,
     <ApplyStep onBack={goBack} selectedDomain={selectedDomain} />,
   ];
 

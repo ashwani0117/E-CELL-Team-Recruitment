@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ChevronLeft, ChevronRight, Building2, Trophy, Users, Target, Rocket, Zap, Swords, Globe, Award, BadgeCheck, Landmark } from "lucide-react";
+import { ChevronLeft, ChevronRight, Building2, Trophy, Users, Target, Rocket, Zap, Swords, Globe, Award, BadgeCheck, Landmark, HelpCircle } from "lucide-react";
 
 interface WhyStepProps {
   onNext: () => void;
@@ -21,6 +21,13 @@ const highlights = [
   { icon: <Award className="w-5 h-5" />, title: "Certificates", desc: "Proof of contribution and growth" },
   { icon: <BadgeCheck className="w-5 h-5" />, title: "IIT Visits", desc: "Exposure through visits and interactions" },
   { icon: <Landmark className="w-5 h-5" />, title: "Member Achievements", desc: "Real wins, roles, and recognition" },
+];
+
+const faqs = [
+  { q: "Can I apply without startup experience?", a: "Yes. We care more about curiosity, consistency, and willingness to learn." },
+  { q: "Do I need to be active every day?", a: "No, but we expect reliable involvement and timely communication." },
+  { q: "What if I am unsure about the domain?", a: "Read the domain details, choose one primary fit, and be honest in the form." },
+  { q: "How are members selected?", a: "Based on interest, clarity, commitment, and how well your profile matches the domain." },
 ];
 
 export default function WhyStep({ onNext, onBack }: WhyStepProps) {
@@ -78,10 +85,26 @@ export default function WhyStep({ onNext, onBack }: WhyStepProps) {
             </div>
           </div>
 
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.7, duration: 0.6 }} className="border-l-2 border-primary/40 pl-4 mb-8">
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.7, duration: 0.6 }} className="border-l-2 border-primary/40 pl-4 mb-6">
             <p className="text-white/30 text-sm italic">"In this world, there are two types of people — those who watch the clock, and those who build the future."</p>
             <p className="text-primary/50 text-[10px] font-mono uppercase tracking-widest mt-2">— The Plan</p>
           </motion.div>
+
+          <div className="mt-8 mb-10">
+            <div className="flex items-center gap-2 mb-4">
+              <span className="h-px flex-1 bg-white/10" />
+              <p className="text-[10px] font-mono text-white/40 uppercase tracking-[0.35em] flex items-center gap-2"><HelpCircle className="w-4 h-4 text-primary" /> FAQ</p>
+              <span className="h-px flex-1 bg-white/10" />
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              {faqs.map((item, i) => (
+                <motion.div key={item.q} initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.35, delay: i * 0.06 }} className="bg-[#111] border border-white/5 p-4 rounded-sm">
+                  <h3 className="text-white text-sm font-bold uppercase tracking-wide mb-2">{item.q}</h3>
+                  <p className="text-white/40 text-[11px] leading-relaxed">{item.a}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
         </motion.div>
       </div>
 
