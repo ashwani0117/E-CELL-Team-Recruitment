@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Instagram, Check } from "lucide-react";
+import { Check } from "lucide-react";
+import { SiInstagram as Instagram } from "react-icons/si";
 
 const mockPosts = [
   { id: 1, label: "STARTUP SUMMIT '25", tag: "#ecell #iist" },

@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, ChevronDown, Palette, Video, Instagram, Megaphone, LayoutGrid, Code2, X, Lock } from "lucide-react";
+import { ChevronLeft, ChevronRight, ChevronDown, Palette, Video, Megaphone, LayoutGrid, Code2, X, Lock } from "lucide-react";
+import { SiInstagram as Instagram } from "react-icons/si";
 
 interface DomainsStepProps {
   onNext: () => void;

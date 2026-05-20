@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, ChevronDown, Instagram, MessageCircle, Check, Lock } from "lucide-react";
+import { ChevronLeft, ChevronRight, ChevronDown, MessageCircle, Check, Lock } from "lucide-react";
+import { SiInstagram as Instagram } from "react-icons/si";
 
 interface FollowStepProps {
   onNext: () => void;

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Palette, Video, Instagram, Megaphone, LayoutGrid, Code2, X } from "lucide-react";
+import { Palette, Video, Megaphone, LayoutGrid, Code2, X } from "lucide-react";
+import { SiInstagram as Instagram } from "react-icons/si";
 
 const domains = [
   {
