@@ -1,6 +1,12 @@
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight, ChevronDown } from "lucide-react";
+import inside1 from "@assets/20260504_82456AMByGPSMapCamera_1779271667315.jpg";
+import inside2 from "@assets/20260504_82511AMByGPSMapCamera_1779271667317.jpg";
+import inside3 from "@assets/WhatsApp_I6-05-20_at_3.36.26_PM_1779271667318.jpeg";
+import inside4 from "@assets/WhatsApp_Image_2026-05-20_at_3.33.49_PM_1779271667319.jpeg";
+import inside5 from "@assets/WhatsApp_Image_2026-05-20_at_3.36.26_PM_1779271667319.jpeg";
+import inside6 from "@assets/WhatsApp_Image9.15_PM_1779271667319.jpeg";
 
 interface InsideStepProps {
   onNext: () => void;
@@ -19,8 +25,10 @@ function Counter({ end, label, suffix = "+" }: { end: number; label: string; suf
     const increment = end / (duration / 16);
     const timer = setInterval(() => {
       start += increment;
-      if (start >= end) { setCount(end); clearInterval(timer); }
-      else setCount(Math.floor(start));
+      if (start >= end) {
+        setCount(end);
+        clearInterval(timer);
+      } else setCount(Math.floor(start));
     }, 16);
     return () => clearInterval(timer);
   }, [isInView, end]);
@@ -42,6 +50,15 @@ const activities = [
   { label: "Networking Events", file: "15" },
   { label: "Branding Campaigns", file: "19" },
   { label: "Competitions", file: "24" },
+];
+
+const missionImages = [
+  { src: inside1, label: "Entrepreneurship talk" },
+  { src: inside2, label: "Audience session" },
+  { src: inside3, label: "Team discussion" },
+  { src: inside4, label: "Hackathon winners" },
+  { src: inside5, label: "Workshop group photo" },
+  { src: inside6, label: "Conference meetup" },
 ];
 
 export default function InsideStep({ onNext, onBack }: InsideStepProps) {
@@ -84,6 +101,31 @@ export default function InsideStep({ onNext, onBack }: InsideStepProps) {
             <Counter end={3000} label="Students Reached" />
             <Counter end={30} label="Workshops" />
             <Counter end={20} label="Collaborations" />
+          </div>
+
+          <div className="mb-6 sm:mb-8">
+            <div className="flex items-center gap-2 mb-3 sm:mb-4">
+              <span className="h-px flex-1 bg-white/10" />
+              <p className="text-[9px] sm:text-[10px] font-mono text-primary uppercase tracking-[0.35em]">Inside The Mission</p>
+              <span className="h-px flex-1 bg-white/10" />
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
+              {missionImages.map((item, i) => (
+                <motion.div
+                  key={item.label}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.4, delay: 0.2 + i * 0.06 }}
+                  className="aspect-square border border-white/5 rounded-sm overflow-hidden relative bg-[#111] group"
+                >
+                  <img src={item.src} alt={item.label} className="absolute inset-0 w-full h-full object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                  <div className="absolute inset-0 flex items-end p-3">
+                    <p className="text-white text-[9px] sm:text-[10px] uppercase tracking-[0.14em] sm:tracking-[0.18em] drop-shadow leading-tight">{item.label}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-2 sm:gap-3 mb-6">
