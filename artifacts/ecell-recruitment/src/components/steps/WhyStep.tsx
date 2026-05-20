@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ChevronLeft, ChevronRight, Building2, Trophy, Users, Target, Rocket, Zap, Swords, Globe, Award, BadgeCheck, Landmark, HelpCircle } from "lucide-react";
+import { ChevronLeft, ChevronRight, Building2, Trophy, Users, Target, Rocket, Zap, Swords, Globe, Award, BadgeCheck, Landmark } from "lucide-react";
 
 interface WhyStepProps {
   onNext: () => void;
@@ -23,11 +23,13 @@ const highlights = [
   { icon: <Landmark className="w-5 h-5" />, title: "Member Achievements", desc: "Real wins, roles, and recognition" },
 ];
 
-const faqs = [
-  { q: "Can I apply without startup experience?", a: "Yes. We care more about curiosity, consistency, and willingness to learn." },
-  { q: "Do I need to be active every day?", a: "No, but we expect reliable involvement and timely communication." },
-  { q: "What if I am unsure about the domain?", a: "Read the domain details, choose one primary fit, and be honest in the form." },
-  { q: "How are members selected?", a: "Based on interest, clarity, commitment, and how well your profile matches the domain." },
+const achievementImages = [
+  { id: 1, label: "Certificate 01" },
+  { id: 2, label: "Certificate 02" },
+  { id: 3, label: "IIT Visit 01" },
+  { id: 4, label: "IIT Visit 02" },
+  { id: 5, label: "Member Win 01" },
+  { id: 6, label: "Member Win 02" },
 ];
 
 export default function WhyStep({ onNext, onBack }: WhyStepProps) {
@@ -85,26 +87,39 @@ export default function WhyStep({ onNext, onBack }: WhyStepProps) {
             </div>
           </div>
 
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.7, duration: 0.6 }} className="border-l-2 border-primary/40 pl-4 mb-6">
-            <p className="text-white/30 text-sm italic">"In this world, there are two types of people — those who watch the clock, and those who build the future."</p>
-            <p className="text-primary/50 text-[10px] font-mono uppercase tracking-widest mt-2">— The Plan</p>
-          </motion.div>
-
-          <div className="mt-8 mb-10">
+          <div className="mb-10">
             <div className="flex items-center gap-2 mb-4">
               <span className="h-px flex-1 bg-white/10" />
-              <p className="text-[10px] font-mono text-white/40 uppercase tracking-[0.35em] flex items-center gap-2"><HelpCircle className="w-4 h-4 text-primary" /> FAQ</p>
+              <p className="text-[10px] font-mono text-primary uppercase tracking-[0.35em]">Achievement Gallery</p>
               <span className="h-px flex-1 bg-white/10" />
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              {faqs.map((item, i) => (
-                <motion.div key={item.q} initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.35, delay: i * 0.06 }} className="bg-[#111] border border-white/5 p-4 rounded-sm">
-                  <h3 className="text-white text-sm font-bold uppercase tracking-wide mb-2">{item.q}</h3>
-                  <p className="text-white/40 text-[11px] leading-relaxed">{item.a}</p>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+              {achievementImages.map((item, i) => (
+                <motion.div
+                  key={item.id}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.4, delay: 0.2 + i * 0.06 }}
+                  className="aspect-square border border-white/5 rounded-sm overflow-hidden relative bg-[#111] group"
+                >
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(179,18,23,0.22)_0%,transparent_70%)]" />
+                  <div className="absolute inset-0 flex items-center justify-center p-3 text-center">
+                    <div className="space-y-2">
+                      <div className="w-12 h-12 mx-auto rounded-full border border-primary/40 bg-primary/10 flex items-center justify-center text-primary text-[10px] font-mono uppercase tracking-widest">
+                        {String(item.id).padStart(2, "0")}
+                      </div>
+                      <p className="text-white/40 text-[10px] uppercase tracking-[0.25em]">{item.label}</p>
+                    </div>
+                  </div>
                 </motion.div>
               ))}
             </div>
           </div>
+
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.7, duration: 0.6 }} className="border-l-2 border-primary/40 pl-4 mb-6">
+            <p className="text-white/30 text-sm italic">"In this world, there are two types of people — those who watch the clock, and those who build the future."</p>
+            <p className="text-primary/50 text-[10px] font-mono uppercase tracking-widest mt-2">— The Plan</p>
+          </motion.div>
         </motion.div>
       </div>
 
