@@ -23,7 +23,7 @@ export default function HeroStep({ onNext }: HeroStepProps) {
       <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(11,11,11,0.2)_0%,rgba(11,11,11,0.95)_100%)]" />
 
       <motion.div
-        className="absolute left-0 top-1/2 -translate-y-1/2 pointer-events-none select-none -translate-x-[12%] sm:-translate-x-[8%]"
+        className="absolute left-0 top-1/2 -translate-y-1/2 pointer-events-none select-none -translate-x-[18%] sm:-translate-x-[12%]"
         initial={{ opacity: 0, x: -40 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
@@ -31,13 +31,13 @@ export default function HeroStep({ onNext }: HeroStepProps) {
         <img
           src={daliMask}
           alt=""
-          className="w-[56vw] max-w-[560px] min-w-[240px] sm:w-[40vw] md:w-[32vw] lg:w-[28vw] object-contain"
+          className="w-[92vw] max-w-[980px] min-w-[420px] sm:w-[74vw] md:w-[62vw] lg:w-[52vw] object-contain"
           style={{ opacity: 0.18, filter: "grayscale(30%) brightness(0.72)" }}
         />
       </motion.div>
 
       <motion.div
-        className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none select-none translate-x-[12%] sm:translate-x-[8%]"
+        className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none select-none translate-x-[18%] sm:translate-x-[12%]"
         initial={{ opacity: 0, x: 40 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
@@ -45,7 +45,7 @@ export default function HeroStep({ onNext }: HeroStepProps) {
         <img
           src={daliMask}
           alt=""
-          className="w-[56vw] max-w-[560px] min-w-[240px] sm:w-[40vw] md:w-[32vw] lg:w-[28vw] object-contain"
+          className="w-[92vw] max-w-[980px] min-w-[420px] sm:w-[74vw] md:w-[62vw] lg:w-[52vw] object-contain"
           style={{ opacity: 0.18, filter: "grayscale(30%) brightness(0.72)", transform: "scaleX(-1)" }}
         />
       </motion.div>
