@@ -23,7 +23,7 @@ export default function HeroStep({ onNext }: HeroStepProps) {
       <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(11,11,11,0.2)_0%,rgba(11,11,11,0.95)_100%)]" />
 
       <motion.div
-        className="absolute left-0 top-1/2 -translate-y-1/2 pointer-events-none select-none"
+        className="absolute left-0 top-1/2 -translate-y-1/2 pointer-events-none select-none -translate-x-[10%] sm:-translate-x-[6%]"
         initial={{ opacity: 0, x: -40 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
@@ -31,13 +31,13 @@ export default function HeroStep({ onNext }: HeroStepProps) {
         <img
           src={daliMask}
           alt=""
-          className="w-[120px] sm:w-[220px] md:w-[320px] lg:w-[380px] object-contain"
-          style={{ opacity: 0.16, filter: "grayscale(30%) brightness(0.72)" }}
+          className="w-[44vw] max-w-[460px] min-w-[180px] sm:w-[32vw] md:w-[26vw] lg:w-[24vw] object-contain"
+          style={{ opacity: 0.18, filter: "grayscale(30%) brightness(0.72)" }}
         />
       </motion.div>
 
       <motion.div
-        className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none select-none"
+        className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none select-none translate-x-[10%] sm:translate-x-[6%]"
         initial={{ opacity: 0, x: 40 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
@@ -45,8 +45,8 @@ export default function HeroStep({ onNext }: HeroStepProps) {
         <img
           src={daliMask}
           alt=""
-          className="w-[120px] sm:w-[220px] md:w-[320px] lg:w-[380px] object-contain"
-          style={{ opacity: 0.16, filter: "grayscale(30%) brightness(0.72)", transform: "scaleX(-1)" }}
+          className="w-[44vw] max-w-[460px] min-w-[180px] sm:w-[32vw] md:w-[26vw] lg:w-[24vw] object-contain"
+          style={{ opacity: 0.18, filter: "grayscale(30%) brightness(0.72)", transform: "scaleX(-1)" }}
         />
       </motion.div>
 
