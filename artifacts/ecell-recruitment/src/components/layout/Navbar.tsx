@@ -1,4 +1,6 @@
 import { motion } from "framer-motion";
+import { HelpCircle } from "lucide-react";
+import { Link } from "wouter";
 import ecellLogo from "@assets/image_1779218120017.png";
 
 interface NavbarProps {
@@ -47,10 +49,20 @@ export default function Navbar({ step, totalSteps, stepTitle, goToStep }: Navbar
           </div>
         </div>
 
-        <div className="text-xs font-mono text-white/30 tracking-widest">
-          <span className="text-primary font-bold">{String(step + 1).padStart(2, "0")}</span>
-          <span className="mx-1">/</span>
-          {String(totalSteps).padStart(2, "0")}
+        <div className="flex items-center gap-3">
+          <Link
+            href="/faq"
+            data-testid="nav-faq-link"
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary bg-primary/15 text-primary text-[10px] font-bold uppercase tracking-[0.24em] shadow-[0_0_22px_rgba(179,18,23,0.5)]"
+          >
+            <HelpCircle className="w-3.5 h-3.5" />
+            FAQ
+          </Link>
+          <div className="text-xs font-mono text-white/30 tracking-widest hidden sm:block">
+            <span className="text-primary font-bold">{String(step + 1).padStart(2, "0")}</span>
+            <span className="mx-1">/</span>
+            {String(totalSteps).padStart(2, "0")}
+          </div>
         </div>
       </div>
     </motion.header>
